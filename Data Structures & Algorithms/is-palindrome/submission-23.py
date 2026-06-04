@@ -1,0 +1,28 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        front, back = 0, len(s) - 1
+
+        while front < back:
+            while not self.isAlphaNum(s[front]) and front < back:
+                front += 1
+            
+            while not self.isAlphaNum(s[back]) and front < back:
+                back -= 1
+            
+            if s[front].lower() != s[back].lower():
+                return False
+
+            front += 1
+            back -= 1
+        
+        return True
+
+
+    def isAlphaNum(self, c):
+        return (
+            ord('A') <= ord(c) <= ord('Z')
+        ) or (
+            ord('a') <= ord(c) <= ord('z')
+        ) or (
+            ord('0') <= ord(c) <= ord('9')
+        )
